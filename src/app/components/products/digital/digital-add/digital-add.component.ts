@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { Produitservice } from '../../../../shared/service/produit.service';
 import { UserService } from '../../../../shared/service/user.service';
 
 @Component({
@@ -19,7 +20,9 @@ export class DigitalAddComponent implements OnInit {
   user : any;
   imageToShow: any;
   id= localStorage.getItem("connectedId");
-  constructor(private formBuilder: FormBuilder ,private userService: UserService,
+  imageUrl:any;
+  constructor(private formBuilder: FormBuilder ,private userService: UserService, private productService:Produitservice,
+
     private http: HttpClient,
     public sanitization: DomSanitizer,) {
       this.addproduct = this.formBuilder.group({
@@ -27,12 +30,14 @@ export class DigitalAddComponent implements OnInit {
         description: new FormControl( "" , Validators.required),
         new: new FormControl(),
         type: new FormControl("",  Validators.required),
-        brand: new FormControl(0,  Validators.required),
+        brand: new FormControl("",  Validators.required),
         category: new FormControl( "" ),
         sale: new FormControl(),
-        price: new FormControl(0,Validators.required),
+        prix: new FormControl(0,Validators.required),
         stock: new FormControl(0,  Validators.required),
-  
+        imageUrl : new FormControl(""),
+        discount:new FormControl(0),
+        userId : new FormControl(),
     })
     
    }
@@ -55,15 +60,21 @@ export class DigitalAddComponent implements OnInit {
       fd.append("file", this.selectedFile);
       this.http
           .post("http://localhost:3000/uploads/upload", fd)
-          .subscribe((res) => {
+          .subscribe((res) => {    this.imageUrl=res; 
               console.log(res)});  
+       
    }
 
 
    add(){
-
+    this.addproduct.value.userId=this.id;
+    this.addproduct.value.imageUrl=this.imageUrl;
     console.log(this.addproduct.value)
+this.productService.AddProduit(this.addproduct.value).subscribe(res=>{
 
+console.log (res);
+
+})
    }
 
   ngOnInit() {

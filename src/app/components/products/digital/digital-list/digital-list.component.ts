@@ -1,42 +1,92 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 import { digitalListDB } from 'src/app/shared/tables/digital-list';
+import { Produitservice } from '../../../../shared/service/produit.service';
 @Component({
   selector: 'app-digital-list',
   templateUrl: './digital-list.component.html',
   styleUrls: ['./digital-list.component.scss']
 })
-export class DigitalListComponent implements OnInit {
+export class DigitalListComponent implements OnInit  {
   public digital_list = []
+  image: any = null;
+  isImageLoading: boolean;
+  ImageOpen: boolean;
+  user : any;
+  imageToShow: any;
+  images = [];
+  constructor(private productService:Produitservice,private http: HttpClient,
+    public sanitization: DomSanitizer) {
 
-  constructor() {
-    this.digital_list = digitalListDB.digital_list;
+
   }
-  
+ 
   public settings = {
     actions: {
       position: 'right'
     },
     columns: {
-      id: {
-        title: 'Id',
-      },
-      img: {
-        title: 'Product',
-        type: 'html',
-      },
       title: {
-        title: 'Product Title'
+        title: 'title',
       },
-      entry_type: {
-        title: 'Entry Type',
+  
+      prix: {
+        title: 'Prix'
       },
-      quantity: {
-        title: 'Quantity',
-      }
+      stock: {
+        title: 'Stock',
+      },
+  
     },
   };
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener(
+        "load",
+        () => {
+          this.imageToShow = this.sanitization.bypassSecurityTrustResourceUrl(
+                reader.result.toString()
+            );
+            console.log(this.imageToShow);
+            this.images=this.imageToShow;
+        },
+        false
+    );
 
-  ngOnInit() { }
+    if (image) {
+   reader.readAsDataURL(image);
+    }
+}
+  getImageFromService(produit : any):any {
+    this.isImageLoading = true;
+    console.log(produit);
+    this.getImage(produit.imageUrl).subscribe(
+        (data) => {
+            this.createImageFromBlob(data);
+            this.isImageLoading = false;
+        },
+        (error) => {
+            console.log(error);
+        }
+    );
+}
+  getImage(produit :any): Observable<Blob> {
+    console.log(produit);
+    return this.http.get(
+        
+        "http://localhost:3000/uploads/image/"+produit,
+        { responseType: "blob" }
+    );
+}
+  ngOnInit() { this.productService.getAll().subscribe(res=>{
+    this.digital_list=res;
+    res.forEach(element => {
+  this.getImageFromService(element);
+  });
+  })
+  }
 
 }

@@ -97,6 +97,11 @@ export class NavService {
 				{ path: '/convert', title: 'Convert Image', type: 'link' },
 			]
 		},
+		{
+			title: 'Animate', icon: 'user-plus', type: 'sub', active: false, children: [
+				{ path: '/animate', title: 'Animate Image', type: 'link' },
+			]
+		},
 		// {
 		// 	title: 'Vendors', icon: 'users', type: 'sub', active: false, children: [
 		// 		{ path: '/vendors/list-vendors', title: 'Vendor List', type: 'link' },

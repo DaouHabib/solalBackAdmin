@@ -93,5 +93,12 @@ export const content: Routes = [
       breadcrumb: "Convert Image"
     }
   },
+  {
+    path: 'animate',
+    loadChildren: () => import('../../components/animate-image/animate-image.module').then(m => m.AnimateImageModule),
+    data: {
+      breadcrumb: "Animate Image"
+    }
+  },
   
 ];

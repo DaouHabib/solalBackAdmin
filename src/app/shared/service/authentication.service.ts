@@ -1,10 +1,10 @@
 ﻿import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { APIS } from "../../config";
+import { HttpClient } from "@angular/common/http";
 import { UserService } from "./user.service";
 import { CookieService } from "ngx-cookie-service";
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { APIS } from "../../config";
 
 
 const tokenKey = "auth-token";
@@ -47,12 +47,10 @@ export class AuthenticationService {
         this.cookieService.set(null, token, 365, "/");
         this.token = token;
         this.handleDecodedToken();
-
     }
 
     private handleDecodedToken(): void {
         this.decodedToken = this.helper.decodeToken(this.token);
-        localStorage.setItem('connectedId',this.decodedToken._id)
     }
 
     getToken(): string {

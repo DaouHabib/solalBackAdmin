@@ -8,6 +8,7 @@ export const APIS: { [ prop: string ]: string } = {
     CRON: `${environment.BaseURL}/cron`,
     SUBSCRIBE: `${environment.BaseURL}/subscribe`,
     PRODUIT: `${environment.BaseURL}/product`,
+    PROJET: `${environment.BaseURL}/projet`,
 
 };
 

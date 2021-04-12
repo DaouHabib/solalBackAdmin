@@ -33,6 +33,7 @@ import { AuthenticationService } from './shared/service/authentication.service';
 import { Champservice } from './shared/service/champ.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SettingModule,
     ReportsModule,
     AuthModule,
+    CoreModule,
     SharedModule,
     LocalizationModule,
     ProductsModule,
@@ -64,6 +66,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   providers: [UserService,AuthenticationService,Champservice],
   exports:[],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,0 +1,52 @@
+    <label class="col-form-label pt-0"> Profile photo Upload</label>
+    <div class="card-body dropzone-custom p-0">
+        <div class="dropzone dropzone-primary" [dropzone]="config1" (error)="onUploadError($event)"
+            (success)="onUploadSuccess($event)">
+            <div class="dz-message needsclick">
+                <i class="fa fa-cloud-upload"></i>
+                <h4 class="mb-0 f-w-600">Change your photo</h4>
+            </div>
+        </div>
+    </div>
+    <div class=" dropzone-custom">
+      <div class="dropzone dropzone-primary" [dropzone]="config1" (error)="markeronUploadError($event)"
+        (success)="markeronUploadSuccess($event)">
+        <div class="dz-message needsclick">
+          <i class="fa fa-cloud-upload"></i>
+          <h4 class="mb-0 f-w-600">Upload your Marker</h4>
+        </div>
+      </div>
+    </div>
+ 
+
+
+
+
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h2>Available Animations</h2>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="items"
+      
+        cdkDropListSortingDisabled
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+
+    <div id="imageContainer"class="example-container2"  > </div>
+
+    <div class="example-container">
+      <h2>Actions</h2>
+      <div
+        cdkDropList
+        [cdkDropListData]="basket"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of basket" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </div>
+<button [routerLink]="'/animate/show'"> Go To show </button>

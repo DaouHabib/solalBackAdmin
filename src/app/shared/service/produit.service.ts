@@ -26,7 +26,7 @@ export class Produitservice {
         return this.http.put<any>(`${APIS.PRODUIT}/${id}`, produit);
     }
 
-    getchampByid(id: number): Observable<any> {
+    getProduitByid(id: number): Observable<any> {
         return this.http.get<any[]>(`${APIS.PRODUIT}/${id}`);
     }
 
