@@ -17,7 +17,6 @@ export class ProfileComponent implements OnInit {
   ImageOpen: boolean;
   user : any;
   imageToShow: any;
-  id= localStorage.getItem("connectedId");
 
   constructor(private userService: UserService,
     private http: HttpClient,
@@ -57,7 +56,7 @@ export class ProfileComponent implements OnInit {
               console.log(res)});  
     }
     public  getConnected(){
-      this.userService.getuserByid(this.id).subscribe(data=>{
+      this.userService.getuser().subscribe(data=>{
       this.user = data;
       console.log(data);
           this.getImageFromService(data);

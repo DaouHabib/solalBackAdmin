@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   isImageLoading: boolean;
   isEmployee = false;
   imageExist:boolean;
-  id= localStorage.getItem("connectedId");
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
   constructor(public navServices: NavService, private _serviceUser : UserService,
@@ -46,7 +45,8 @@ export class HeaderComponent implements OnInit {
 
   public  getConnected(){
    
-    this._serviceUser.getuserByid(this.id).subscribe(data=>{
+    this._serviceUser.getuser().subscribe(data=>{
+      console.log(data);
      this.user = data;
      console.log(data);
      

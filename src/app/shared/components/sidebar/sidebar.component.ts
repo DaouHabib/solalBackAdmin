@@ -25,7 +25,6 @@ export class SidebarComponent implements OnInit {
   isImageLoading: boolean;
   isEmployee = false;
   imageExist:boolean;
-  id= localStorage.getItem("connectedId");
   constructor(private router: Router, public navServices: NavService,  private _router: Router,
     private _serviceUser : UserService,
     private http: HttpClient,
@@ -109,7 +108,7 @@ export class SidebarComponent implements OnInit {
   }
   public  getConnected(){
    
-    this._serviceUser.getuserByid(this.id).subscribe(data=>{
+    this._serviceUser.getuser().subscribe(data=>{
      this.user = data;
      console.log(data);
      if(data.Role =="ADMIN"){
