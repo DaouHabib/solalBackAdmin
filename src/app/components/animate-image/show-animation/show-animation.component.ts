@@ -14,144 +14,71 @@ export class ShowAnimationComponent implements AfterViewInit {
   title = 'AR app';
   
   ngAfterViewInit(): void {
+    //document.createElement('a-scene');
+    let aScene = document.createElement('a-scene');
+    aScene.setAttribute('embedded','');
+    aScene.setAttribute('arjs','sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;');  
 
-    //////////////////////////////////////////////////////////////////////////////////
-    //		Init
-    //////////////////////////////////////////////////////////////////////////////////
-    // init renderer
-    let renderer	= new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true
-    });
-    renderer.setClearColor(new THREE.Color('lightgrey'), 0);
-    renderer.setSize( 1500, 700 );
-    renderer.domElement.style.position = 'absolute';
-    renderer.domElement.style.top = '0px';
-    renderer.domElement.style.left = '0px';
-    document.body.appendChild( renderer.domElement );
-    // array of functions for the rendering loop
-    let onRenderFcts = [];
-    // init scene and camera
-    let scene	= new THREE.Scene();
+    let aAsset = document.createElement('a-assets');
+    let video = document.createElement('video');
+    video.setAttribute('crossorigin','anonymous');  
+    video.setAttribute('id','BS0i6');  
+    video.setAttribute('controls','true');  
+    video.setAttribute('autoplay','true');  
+    video.setAttribute('type','video/mp4');  
+    video.setAttribute('src','https://raw.githubusercontent.com/HabibDaou/HabibDaou.github.io/master/IKEAPlace.mp4');  
+    aAsset.appendChild(video);
+    let aMarker = document.createElement('a-marker');
+    aMarker.setAttribute("id","memarker1")
+    aMarker.setAttribute("vidhandler","video: #BS0i6")
+    aMarker.setAttribute("preset","custom")
+    aMarker.setAttribute("type","pattern")
+    aMarker.setAttribute("url","https://raw.githubusercontent.com/HabibDaou/HabibDaou.github.io/master/xmarker.patt")
+    let aBox = document.createElement('a-box');
+    aBox.setAttribute("position","0 0.5 0")
+    aBox.setAttribute("material","opacity: 0.5; side: double")
+    let aVideo = document.createElement('a-video');
+    aVideo.setAttribute("src","#BS0i6")
+    aVideo.setAttribute("position","0 0.5 0")
+    aVideo.setAttribute("rotation","270 0 0")
+    aVideo.setAttribute("play","true")
+    aVideo.setAttribute("width","2")
+    aVideo.setAttribute("height","2")
+    aBox.appendChild(aVideo);
+    aMarker.appendChild(aBox);
+    let aEntity = document.createElement('a-entity');
+    aEntity.setAttribute("camera","")
+    aScene.appendChild(aAsset);
+    aScene.appendChild(aMarker);
+    aScene.appendChild(aEntity);
+    document.body.appendChild(aScene);
 
-    //////////////////////////////////////////////////////////////////////////////////
-    //		Initialize a basic camera
-    //////////////////////////////////////////////////////////////////////////////////
-    // Create a camera
-    let camera = new THREE.Camera();
-    scene.add(camera);
-    ////////////////////////////////////////////////////////////////////////////////
-    //          handle arToolkitSource
-    ////////////////////////////////////////////////////////////////////////////////
-    let arToolkitSource = new THREEx.ArToolkitSource({
-      // to read from the webcam
-      sourceType : 'webcam',
-
-      // // to read from an image
-      // sourceType : 'image',
-      // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',
-      // to read from a video
-      // sourceType : 'video',
-      // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',
-    });
-    arToolkitSource.init(function onReady() {
-      onResize();
-    });
-
-    // handle resize
-    window.addEventListener('resize', function() {
-      onResize();
-    });
-    function onResize() {
-      arToolkitSource.onResizeElement();
-      arToolkitSource.copyElementSizeTo(renderer.domElement);
-      if ( arToolkitContext.arController !== null ) {
-        arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas);
-      }
-    }
-    ////////////////////////////////////////////////////////////////////////////////
-    //          initialize arToolkitContext
-    ////////////////////////////////////////////////////////////////////////////////
-
-    // create atToolkitContext
-    let arToolkitContext = new THREEx.ArToolkitContext({
-      cameraParametersUrl: THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
-      detectionMode: 'mono',
-    });
-    // initialize it
-    arToolkitContext.init(function onCompleted() {
-      // copy projection matrix to camera
-      camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
-    });
-    // update artoolkit on every frame
-    onRenderFcts.push(function() {
-      if ( arToolkitSource.ready === false ) {	return; }
-      arToolkitContext.update( arToolkitSource.domElement );
-
-      // update scene.visible if the marker is seen
-      scene.visible = camera.visible;
-    });
-
-    ////////////////////////////////////////////////////////////////////////////////
-    //          Create a ArMarkerControls
-    ////////////////////////////////////////////////////////////////////////////////
-
-    // init controls for camera
-    let markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
-      type : 'pattern',
-      patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro',
-      // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
-      // as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
-      changeMatrixMode: 'cameraTransformMatrix'
-    });
-    // as we do changeMatrixMode: 'cameraTransformMatrix', start with invisible scene
-    scene.visible = false;
-    //////////////////////////////////////////////////////////////////////////////////
-    //		add an object in the scene
-    //////////////////////////////////////////////////////////////////////////////////
-    // add a torus knot
-    let geometry	= new THREE.CubeGeometry(1, 1, 1);
-    let material	= new THREE.MeshNormalMaterial({
-      transparent : true,
-      opacity: 0.5,
-      side: THREE.DoubleSide
-    });
-    let mesh	= new THREE.Mesh( geometry, material );
-    mesh.position.y	= geometry.parameters.height / 2;
-    scene.add( mesh );
-
-    geometry	= new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
-    material	= new THREE.MeshNormalMaterial();
-    mesh	= new THREE.Mesh( geometry, material );
-    mesh.position.y	= 0.5;
-    scene.add( mesh );
-
-    onRenderFcts.push(function(delta) {
-      mesh.rotation.x += Math.PI * delta;
-    });
-    //////////////////////////////////////////////////////////////////////////////////
-    //		render the whole thing on the page
-    //////////////////////////////////////////////////////////////////////////////////
-    // render the scene
-    onRenderFcts.push(function() {
-      renderer.render( scene, camera );
-    });
-    // run the rendering loop
-    let lastTimeMsec = null;
-    requestAnimationFrame(function animate(nowMsec) {
-      // keep looping
-      requestAnimationFrame( animate );
-      // measure time
-      lastTimeMsec	= lastTimeMsec || nowMsec - 1000 / 60;
-      let deltaMsec	= Math.min(200, nowMsec - lastTimeMsec);
-      lastTimeMsec	= nowMsec;
-      // call each update function
-      onRenderFcts.forEach(function(onRenderFct) {
-        onRenderFct(deltaMsec / 1000, nowMsec / 1000);
-      });
-    });
-
-
+    let script = document.createElement('script');
+    script.innerHTML = `
+    AFRAME.registerComponent('vidhandler', {
+        // ...
+        init: function () {
+            // Set up initial state and variables.
+            this.toggle = false;
+            this.vid = document.querySelector("#BS0i6")
+            this.vid.pause();
+       
+        },
+        tick: function () {
+            if (this.el.object3D.visible == true) {
+                if (!this.toggle) {
+                    this.toggle = true;
+                    this.vid.play();
+            
+                }
+            } else {
+                this.toggle = false;
+                this.vid.pause();
+           
+            }
+        }
+    });`
+    document.body.appendChild(script);
   }
 
 }

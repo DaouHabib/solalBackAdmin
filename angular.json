@@ -43,7 +43,7 @@
               "src/assets/scss/style.scss",
               "node_modules/font-awesome/scss/font-awesome.scss"
             ],
-            "scripts": ["./threex-arpatternfile.js"]
+            "scripts": ["./threex-arpatternfile.js","./threex.videotexture.js","stats.min.js","threex.webcamtexture.js","OrbitControls.js"]
           },
           "configurations": {
             "production": {

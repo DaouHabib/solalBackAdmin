@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag} from '@angular/cdk/drag-drop';
+import { UserService } from '../../shared/service/user.service';
+import { HttpClient } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-animate-image',
@@ -8,6 +11,11 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag} from '@angular
   styleUrls: ['./animate-image.component.scss']
 })
 export class AnimateImageComponent implements  OnInit {
+  
+  constructor(private userService: UserService,
+    private http: HttpClient,
+    public sanitization: DomSanitizer,) { }
+
   items = [
     'Carrots',
     'Tomatoes',
@@ -55,6 +63,7 @@ export class AnimateImageComponent implements  OnInit {
     errorReset: null,
     cancelReset: null
   };
+   
   
 ngOnInit(){
 

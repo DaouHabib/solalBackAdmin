@@ -34,10 +34,12 @@ import { Champservice } from './shared/service/champ.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
+import { ShowAnimationComponent } from './components/animate-image/show-animation/show-animation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ShowAnimationComponent
     
   ],
   imports: [

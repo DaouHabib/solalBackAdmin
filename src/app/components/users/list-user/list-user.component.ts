@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { userListDB } from 'src/app/shared/tables/list-users';
 import { UserService } from '../../../shared/service/user.service';
 
 @Component({

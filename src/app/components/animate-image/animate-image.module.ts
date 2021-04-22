@@ -16,7 +16,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [AnimateImageComponent, ShowAnimationComponent],
+  declarations: [AnimateImageComponent],
   imports: [
     CommonModule,
     AnimateImageRoutingModule,

@@ -25,6 +25,9 @@ export class DigitalListComponent implements OnInit  {
   }
  
   public settings = {
+    hideSubHeader: true,
+    edit: { confirmSave: true } ,
+    delete: { confirmDelete : true } ,
     actions: {
       position: 'right'
     },
@@ -81,12 +84,40 @@ export class DigitalListComponent implements OnInit  {
         { responseType: "blob" }
     );
 }
-  ngOnInit() { this.productService.getAll().subscribe(res=>{
+getAllproducts(){
+  this.productService.getAll().subscribe(res=>{
     this.digital_list=res;
-    res.forEach(element => {
-  this.getImageFromService(element);
-  });
+
   })
+}
+onEditConfirm(event){
+  if (window.confirm('Are you sure you want to save?')) {
+    console.log(event.newData);
+    event.confirm.resolve(this.productService.edit(event.newData,event.data._id).subscribe(res=>{
+      console.log (res);
+      
+      this.getAllproducts();
+    }));
+  } else {
+    event.confirm.reject();
+  }
+
+}
+onDeleteConfirm(event){
+  if (window.confirm('Are you sure you want to delete?')) {
+    event.confirm.resolve(  this.productService.delete(event.data._id).subscribe(res=>{
+      console.log (res);
+      this.getAllproducts();
+    }));
+  } else {
+    event.confirm.reject();
+  }
+  console.log(event)
+
+}
+
+  ngOnInit() { 
+    this.getAllproducts();
   }
 
 }

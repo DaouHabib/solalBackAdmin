@@ -8,10 +8,7 @@ const routes: Routes = [
     path: '',
     component: AnimateImageComponent
   },
-  {
-    path: 'show',
-    component: ShowAnimationComponent
-  }
+
 ];
 
 @NgModule({
