@@ -1,53 +1,49 @@
-    <label class="col-form-label pt-0"> Profile photo Upload</label>
-    <div class="card-body dropzone-custom p-0">
-        <div class="dropzone dropzone-primary" [dropzone]="config1" (error)="onUploadError($event)"
-            (success)="onUploadSuccess($event)">
-            <div class="dz-message needsclick">
-                <i class="fa fa-cloud-upload"></i>
-                <h4 class="mb-0 f-w-600">Change your photo</h4>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>Add Project</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="./../assets/images/add.png">
+        <mat-card-content>
+          <p>
+            Create your new Augmented réality project </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="product-buttons text-center">
+            <button type="button" class="btn btn-primary mr-1"
+            [routerLink]="'/animate/newproject'"
+            >Add New project</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="10px grid">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let collection of projects">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <mat-card-title>Your Projects </mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="collection.imageUrl">
+          <mat-card-content>
+            <p>
+              {{collection.name}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="product-buttons text-center">
+              <button type="button" class="btn btn-primary mr-1" (click)="goTomarker(collection.id)">Show
+                Markers</button>
             </div>
-        </div>
-    </div>
-    <div class=" dropzone-custom">
-      <div class="dropzone dropzone-primary" [dropzone]="config1" (error)="markeronUploadError($event)"
-        (success)="markeronUploadSuccess($event)">
-        <div class="dz-message needsclick">
-          <i class="fa fa-cloud-upload"></i>
-          <h4 class="mb-0 f-w-600">Upload your Marker</h4>
-        </div>
-      </div>
-    </div>
- 
-
-
-
-
-  <div cdkDropListGroup>
-    <div class="example-container">
-      <h2>Available Animations</h2>
-
-      <div
-        cdkDropList
-        [cdkDropListData]="items"
-      
-        cdkDropListSortingDisabled
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of items" cdkDrag>{{item}}</div>
-      </div>
-    </div>
-
-    <div id="imageContainer"class="example-container2"  > </div>
-    <div id="tui-image-editor"></div>
-
-    <div class="example-container">
-      <h2>Actions</h2>
-      <div
-        cdkDropList
-        [cdkDropListData]="basket"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of basket" cdkDrag>{{item}}</div>
+          </mat-card-actions>
+        </mat-card>
       </div>
     </div>
   </div>
-<button [routerLink]="'/animate/show'"> Go To show </button>

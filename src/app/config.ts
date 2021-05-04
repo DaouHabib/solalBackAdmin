@@ -9,6 +9,9 @@ export const APIS: { [ prop: string ]: string } = {
     SUBSCRIBE: `${environment.BaseURL}/subscribe`,
     PRODUIT: `${environment.BaseURL}/product`,
     PROJET: `${environment.BaseURL}/projet`,
+    MARKER: `${environment.BaseURL}/marker`,
+    ACTION: `${environment.BaseURL}/action`,
 
+    
 };
 

@@ -35,12 +35,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
 import { ShowAnimationComponent } from './components/animate-image/show-animation/show-animation.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShowAnimationComponent
-    
+    ShowAnimationComponent,
   ],
   imports: [
     FontAwesomeModule,
@@ -69,5 +70,6 @@ import { ShowAnimationComponent } from './components/animate-image/show-animatio
   providers: [UserService,AuthenticationService,Champservice],
   exports:[],
   bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

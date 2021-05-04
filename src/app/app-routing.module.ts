@@ -21,7 +21,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'show',
+    path: 'show/:idProject',
     component:ShowAnimationComponent ,
 
   },
