@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { Produitservice } from '../../../../shared/service/produit.service';
 import { UserService } from '../../../../shared/service/user.service';
@@ -19,10 +20,10 @@ export class DigitalAddComponent implements OnInit {
   ImageOpen: boolean;
   user : any;
   imageToShow: any;
-  id= localStorage.getItem("connectedId");
+  id:any;
   imageUrl:any;
   constructor(private formBuilder: FormBuilder ,private userService: UserService, private productService:Produitservice,
-
+    private router: Router,
     private http: HttpClient,
     public sanitization: DomSanitizer,) {
       this.addproduct = this.formBuilder.group({
@@ -71,6 +72,8 @@ export class DigitalAddComponent implements OnInit {
     this.addproduct.value.imageUrl=this.imageUrl;
     console.log(this.addproduct.value)
 this.productService.AddProduit(this.addproduct.value).subscribe(res=>{
+ 
+  this.router.navigate( ['/products/digital/digital-product-list'] );
 
 console.log (res);
 
@@ -78,6 +81,9 @@ console.log (res);
    }
 
   ngOnInit() {
+    this.userService.getuser().subscribe(res=>{
+      this.id =res._id;
+    })
   }
 
 }

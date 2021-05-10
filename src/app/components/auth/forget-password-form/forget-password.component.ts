@@ -26,16 +26,16 @@ export class ForgetPasswordFormComponent implements OnInit {
 
   owlcarousel = [
     {
-      title: "Welcome to Solal Application",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      title: "Welcome to Ireality Application",
+      desc: "Pour une meilleur expérience utilisateur Pour l'animation des images  utiliser notre Application Ireality .",
     },
     {
-      title: "Welcome to Solal Application",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      title: "Welcome to Ireality Application",
+      desc: "Pour une meilleur expérience utilisateur Pour l'animation des images  utiliser notre Application Ireality .",
     },
     {
-      title: "Welcome to Solal Application",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      title: "Welcome to Ireality Application",
+      desc: "Pour une meilleur expérience utilisateur Pour l'animation des images  utiliser notre Application Ireality .",
     }
   ]
   owlcarouselOptions = {

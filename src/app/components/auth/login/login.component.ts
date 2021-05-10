@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-            console.log(data);
             this.authService.saveToken(data.token);
             if (data){
                 this.router.navigate( ['dashboard/default'] );
@@ -42,16 +41,16 @@ export class LoginComponent implements OnInit {
 }
   owlcarousel = [
     {
-      title: "Welcome to Solal Application",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      title: "Welcome to Ireality Application",
+      desc: "Pour une meilleur expérience utilisateur Pour l'animation des images  utiliser notre Application Ireality .",
     },
     {
-      title: "Welcome to Solal Application",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      title: "Welcome to Ireality Application",
+      desc: "Pour une meilleur expérience utilisateur Pour l'animation des images  utiliser notre Application Ireality .",
     },
     {
-      title: "Welcome to Solal Application",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      title: "Welcome to Ireality Application",
+      desc: "Pour une meilleur expérience utilisateur Pour l'animation des images  utiliser notre Application Ireality .",
     }
   ]
   owlcarouselOptions = {

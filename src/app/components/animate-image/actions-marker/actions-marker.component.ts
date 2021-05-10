@@ -6,6 +6,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import Cropper from "cropperjs";
 import { Markerservice } from '../../../shared/service/marker.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-actions-marker',
@@ -25,9 +26,12 @@ export class ActionsMarkerComponent implements OnInit {
   imageUrl:any;
   dynamicForm: FormGroup;
   idMarker:any;
+  idprojet = localStorage.getItem('idProjet');
   seedData = [
   
   ];
+  length:any=0;
+
   constructor(private formBuilder: FormBuilder , private http: HttpClient,  public sanitization: DomSanitizer,
     private markerService : Markerservice,
     private route: ActivatedRoute,
@@ -51,6 +55,7 @@ export class ActionsMarkerComponent implements OnInit {
    }
 
    seedFiltersFormArray() {
+
     this.seedData.forEach(seedDatum => {
       const formGroup = this.createFilterGroup();
       if (seedDatum.apiType) {
@@ -62,6 +67,8 @@ export class ActionsMarkerComponent implements OnInit {
   }
 
   createFilterGroup() {
+    this.length++;
+    console.log(this.length)
     return this.formBuilder.group({
       name: this.formBuilder.control(null),
       link: this.formBuilder.control(null),
@@ -90,6 +97,8 @@ export class ActionsMarkerComponent implements OnInit {
     console.log(this.dynamicForm.value);
     this.markerService.AddactionstoMarker(this.dynamicForm.value, this.idMarker).subscribe(res=>{
       console.log(res);
+
+      this.router.navigate( ['/animate']);
     })
   }
 
@@ -131,11 +140,10 @@ export class ActionsMarkerComponent implements OnInit {
   public imageElement: ElementRef;
 
   @Input("src")
-  public imageSource: string;
+  public imageSource: any;
 
   public imageDestination: string;
   private cropper: Cropper;
-
 
   public ngAfterViewInit() {
       this.cropper = new Cropper(this.imageElement.nativeElement, {
@@ -153,10 +161,49 @@ const canvasData =  this.cropper.getCanvasData();
 console.log("imageData:"+imageData.aspectRatio,"CanvasData:"+canvasData.naturalHeight)
   }
 
+
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener(
+        "load",
+        () => {
+          this.imageToShow = this.sanitization.bypassSecurityTrustResourceUrl(reader.result.toString());
+          console.log(this.imageToShow)
+        },
+        false
+    );
+  
+    if (image) {
+   reader.readAsDataURL(image);
+    }
+  }
+  getImageFromService(marker : any):any {
+    this.getImage(marker).subscribe(
+        (data) => {
+            this.createImageFromBlob(data);
+        },
+        (error) => {
+            console.log(error);
+        }
+    );
+  }
+  getImage(marker :any): Observable<Blob> {
+    console.log(marker);
+    return this.http.get(
+        "http://localhost:3000/uploads/image/"+marker,
+        { responseType: "blob" }
+    );
+  }
+
+
+
   public ngOnInit() {
     this.route.paramMap.subscribe((routes: any) => {
       this.idMarker=routes.params.idMarker
-
+      this.markerService.getmarkerByid(routes.params.idMarker).subscribe(res=>{
+     this.getImageFromService(res.imageUrl);
+      })
     })
     this.dynamicForm = this.formBuilder.group({
       filters: this.formBuilder.array([])

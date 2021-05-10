@@ -61,7 +61,6 @@ export class CreateProjectComponent implements OnInit {
   public getConnected() {
     this.userservice.getuser().subscribe(data => {
       this.user = data;
-      console.log(data);
     });
   }
 

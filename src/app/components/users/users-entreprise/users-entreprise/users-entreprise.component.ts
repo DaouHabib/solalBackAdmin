@@ -43,8 +43,7 @@ export class UsersEntrepriseComponent implements OnInit {
 
     const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
     const token = "pk.eyJ1IjoiaGFiaWJkYW91IiwiYSI6ImNqb3l3YjNjcTAwanUzcm5qbWZ5ZmhvMmoifQ.rMS3RRmvsY09yDIF-vXe8w&autocomplete=true&types=country";
-    this.userService.getuserByid(this.id).subscribe(data => {
-      console.log(data);
+    this.userService.getuser().subscribe(data => {
       this.user = data;
       this.entreprisService.getEntrepriseByuser(data._id).subscribe(result => {
         this.entreprise = result.entreprise;

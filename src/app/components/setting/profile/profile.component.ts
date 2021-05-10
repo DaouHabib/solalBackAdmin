@@ -58,7 +58,6 @@ export class ProfileComponent implements OnInit {
     public  getConnected(){
       this.userService.getuser().subscribe(data=>{
       this.user = data;
-      console.log(data);
           this.getImageFromService(data);
     });
    

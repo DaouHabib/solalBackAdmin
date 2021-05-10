@@ -11,6 +11,7 @@ import { UserService } from '../../../shared/service/user.service';
 export class ChangePasswordComponent implements OnInit {
   forgotPasswordForm: FormGroup;
   user : any;
+  disable =true;
   constructor(private userservice : UserService,
     private router: Router,) {this.forgotPasswordForm = new FormGroup(
       {
@@ -29,11 +30,15 @@ export class ChangePasswordComponent implements OnInit {
     console.log(data);
   });
 }
-
+public check(){
+  if(this.forgotPasswordForm.value.password ==this.forgotPasswordForm.value.Retypepassword && this.forgotPasswordForm.value.password !== null){
+    return false}else {return true}
+   
+    
+}
 public ResetPassword(){
   if(this.forgotPasswordForm.value.password ==this.forgotPasswordForm.value.Retypepassword){
-    console.log("True");
-  
+
   const UserT = this.user;
   
   UserT.password =this.forgotPasswordForm.value.password  ;
@@ -41,7 +46,7 @@ public ResetPassword(){
     this.userservice.edit(UserT, this.user._id).subscribe(
       user => {
         console.log(user);
-          this.router.navigate( ['/authentication/login'] );
+          this.router.navigate( ['/auth/login'] );
   
       },
       err => {console.log(err);

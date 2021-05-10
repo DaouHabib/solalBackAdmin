@@ -62,6 +62,7 @@ export class CreateMarkerComponent implements OnInit {
    public  getConnected(){
     this.route.paramMap.subscribe((routes: any) => {
       this.idProject=routes.params.idporject
+      localStorage.setItem('idProjet',this.idProject);
     })
     this.userservice.getuser().subscribe(data=>{
     this.user = data;
