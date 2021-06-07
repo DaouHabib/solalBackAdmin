@@ -1,0 +1,25 @@
+{
+  "name": "threex.videotexture",
+  "version": "1.0.0",
+  "description": "three.js helper to display video texture",
+  "main": "build/bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeromeetienne/threex.videotexture.git"
+  },
+  "keywords": [
+    "three",
+    "threex",
+    "videotexture",
+    "webcamtexture"
+  ],
+  "author": "jeromeetienne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeromeetienne/threex.videotexture/issues"
+  },
+  "homepage": "https://github.com/jeromeetienne/threex.videotexture#readme"
+}
