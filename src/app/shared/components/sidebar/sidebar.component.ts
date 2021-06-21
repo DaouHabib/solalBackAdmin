@@ -161,7 +161,7 @@ export class SidebarComponent implements OnInit {
  }
  getImage(user :any): Observable<Blob> {
      return this.http.get(
-         "http://localhost:3000/uploads/image/"+user.imageUrl,
+         "https://solalireality.herokuapp.com/uploads/image/"+user.imageUrl,
          { responseType: "blob" }
      );
  }

@@ -75,7 +75,7 @@ getImageFromService(marker : any):any {
 getImage(marker :any): Observable<Blob> {
   console.log(marker);
   return this.http.get(
-      "http://localhost:3000/uploads/image/"+marker,
+      "https://solalireality.herokuapp.com/uploads/image/"+marker,
       { responseType: "blob" }
   );
 }

@@ -80,7 +80,7 @@ export class DigitalListComponent implements OnInit  {
     console.log(produit);
     return this.http.get(
         
-        "http://localhost:3000/uploads/image/"+produit,
+        "https://solalireality.herokuapp.com/uploads/image/"+produit,
         { responseType: "blob" }
     );
 }

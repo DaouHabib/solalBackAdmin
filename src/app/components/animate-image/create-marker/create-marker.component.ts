@@ -54,7 +54,7 @@ export class CreateMarkerComponent implements OnInit {
       const fd = new FormData();
       fd.append("file", this.selectedFile);
       this.http
-          .post("http://localhost:3000/uploads/upload", fd)
+          .post("https://solalireality.herokuapp.com/uploads/upload", fd)
           .subscribe((res) => {    this.imageUrl=res; 
               console.log(res)});  
        

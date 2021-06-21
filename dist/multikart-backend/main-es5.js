@@ -3837,7 +3837,7 @@
       var environment = {
         production: false,
         hmr: false,
-        BaseURL: "http://localhost:3000"
+        BaseURL: "https://solalireality.herokuapp.com"
       };
       /*
        * For easier debugging in development mode, you can import the following file
@@ -4981,7 +4981,7 @@
         }, {
           key: "getImage",
           value: function getImage(user) {
-            return this.http.get("http://localhost:3000/uploads/image/" + user.imageUrl, {
+            return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + user.imageUrl, {
               responseType: "blob"
             });
           }
@@ -5847,7 +5847,7 @@
         }, {
           key: "sendEmail",
           value: function sendEmail(email) {
-            return this.http.post("http://localhost:3000/users/sendEmail", email);
+            return this.http.post("https://solalireality.herokuapp.com/users/sendEmail", email);
           }
         }, {
           key: "getAll",
@@ -12615,7 +12615,7 @@
             this.selectedFile = args[0];
             var fd = new FormData();
             fd.append("file", this.selectedFile);
-            this.http.post("http://localhost:3000/uploads/upload", fd).subscribe(function (res) {
+            this.http.post("https://solalireality.herokuapp.com/uploads/upload", fd).subscribe(function (res) {
               _this22.imageUrl = res;
               console.log(res);
             });
@@ -16601,7 +16601,7 @@
         }, {
           key: "getImage",
           value: function getImage(user) {
-            return this.http.get("http://localhost:3000/uploads/image/" + user.imageUrl, {
+            return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + user.imageUrl, {
               responseType: "blob"
             });
           }
@@ -21377,7 +21377,7 @@
           key: "getImage",
           value: function getImage(produit) {
             console.log(produit);
-            return this.http.get("http://localhost:3000/uploads/image/" + produit, {
+            return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + produit, {
               responseType: "blob"
             });
           }
@@ -22992,7 +22992,7 @@
             this.selectedFile = args[0];
             var fd = new FormData();
             fd.append("file", this.selectedFile);
-            this.http.post("http://localhost:3000/uploads/upload", fd).subscribe(function (res) {
+            this.http.post("https://solalireality.herokuapp.com/uploads/upload", fd).subscribe(function (res) {
               var UserT = _this41.user;
               UserT.imageUrl = res;
 
@@ -23032,7 +23032,7 @@
 
             var fd = new FormData();
             fd.append("file", this.selectedFile);
-            this.http.post("http://localhost:3000/uploads/upload", fd).subscribe(function (res) {
+            this.http.post("https://solalireality.herokuapp.com/uploads/upload", fd).subscribe(function (res) {
               var UserT = _this43.user;
               UserT.imageUrl = res;
 
@@ -23084,7 +23084,7 @@
         }, {
           key: "getImage",
           value: function getImage(user) {
-            return this.http.get("http://localhost:3000/uploads/image/" + user.imageUrl, {
+            return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + user.imageUrl, {
               responseType: "blob"
             });
           }

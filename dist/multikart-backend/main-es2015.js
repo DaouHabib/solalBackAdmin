@@ -2043,7 +2043,7 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     hmr: false,
-    BaseURL: "http://localhost:3000"
+    BaseURL: "https://solalireality.herokuapp.com"
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -2647,7 +2647,7 @@ class SidebarComponent {
         });
     }
     getImage(user) {
-        return this.http.get("http://localhost:3000/uploads/image/" + user.imageUrl, { responseType: "blob" });
+        return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + user.imageUrl, { responseType: "blob" });
     }
     ngOnInit() {
         this.getConnected();
@@ -3164,7 +3164,7 @@ class UserService {
         return this.http.post(`${_config__WEBPACK_IMPORTED_MODULE_1__["APIS"].USERS}`, user);
     }
     sendEmail(email) {
-        return this.http.post("http://localhost:3000/users/sendEmail", email);
+        return this.http.post("https://solalireality.herokuapp.com/users/sendEmail", email);
     }
     getAll() {
         return this.http.get(`${_config__WEBPACK_IMPORTED_MODULE_1__["APIS"].USERS}`);
@@ -7002,7 +7002,7 @@ class DigitalAddComponent {
         const fd = new FormData();
         fd.append("file", this.selectedFile);
         this.http
-            .post("http://localhost:3000/uploads/upload", fd)
+            .post("https://solalireality.herokuapp.com/uploads/upload", fd)
             .subscribe((res) => {
             this.imageUrl = res;
             console.log(res);
@@ -9390,7 +9390,7 @@ class HeaderComponent {
         });
     }
     getImage(user) {
-        return this.http.get("http://localhost:3000/uploads/image/" + user.imageUrl, { responseType: "blob" });
+        return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + user.imageUrl, { responseType: "blob" });
     }
     ngOnInit() {
         this.getConnected();
@@ -12227,7 +12227,7 @@ class DigitalListComponent {
     }
     getImage(produit) {
         console.log(produit);
-        return this.http.get("http://localhost:3000/uploads/image/" + produit, { responseType: "blob" });
+        return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + produit, { responseType: "blob" });
     }
     getAllproducts() {
         this.productService.getAll().subscribe(res => {
@@ -13094,7 +13094,7 @@ class ProfileComponent {
         const fd = new FormData();
         fd.append("file", this.selectedFile);
         this.http
-            .post("http://localhost:3000/uploads/upload", fd)
+            .post("https://solalireality.herokuapp.com/uploads/upload", fd)
             .subscribe((res) => {
             const UserT = this.user;
             UserT.imageUrl = res;
@@ -13122,7 +13122,7 @@ class ProfileComponent {
         const fd = new FormData();
         fd.append("file", this.selectedFile);
         this.http
-            .post("http://localhost:3000/uploads/upload", fd)
+            .post("https://solalireality.herokuapp.com/uploads/upload", fd)
             .subscribe((res) => {
             const UserT = this.user;
             UserT.imageUrl = res;
@@ -13158,7 +13158,7 @@ class ProfileComponent {
         });
     }
     getImage(user) {
-        return this.http.get("http://localhost:3000/uploads/image/" + user.imageUrl, { responseType: "blob" });
+        return this.http.get("https://solalireality.herokuapp.com/uploads/image/" + user.imageUrl, { responseType: "blob" });
     }
     ngOnInit() {
         this.getConnected();

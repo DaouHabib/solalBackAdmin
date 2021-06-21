@@ -25,7 +25,7 @@ export class UserService {
         );
     }
     sendEmail(email:any):any {
-        return this.http.post<any>("http://localhost:3000/users/sendEmail",email);
+        return this.http.post<any>("https://solalireality.herokuapp.com/users/sendEmail",email);
     }
     
     getAll(): Observable<any> {

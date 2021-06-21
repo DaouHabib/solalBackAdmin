@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
       const fd = new FormData();
       fd.append("file", this.selectedFile);
       this.http
-          .post("http://localhost:3000/uploads/upload", fd)
+          .post("https://solalireality.herokuapp.com/uploads/upload", fd)
           .subscribe((res) => {
               const UserT = this.user;
               UserT.imageUrl = res;
@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
       const fd = new FormData();
       fd.append("file", this.selectedFile);
       this.http
-          .post("http://localhost:3000/uploads/upload", fd)
+          .post("https://solalireality.herokuapp.com/uploads/upload", fd)
           .subscribe((res) => {
               const UserT = this.user;
               UserT.imageUrl = res;
@@ -121,7 +121,7 @@ export class ProfileComponent implements OnInit {
     getImage(user :any): Observable<Blob> {
       return this.http.get(
           
-          "http://localhost:3000/uploads/image/"+user.imageUrl,
+          "https://solalireality.herokuapp.com/uploads/image/"+user.imageUrl,
           { responseType: "blob" }
       );
   }
