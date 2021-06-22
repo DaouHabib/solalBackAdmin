@@ -5,6 +5,7 @@ import { ContentLayoutComponent } from './shared/layout/content-layout/content-l
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { ShowAnimationComponent } from './components/animate-image/show-animation/show-animation.component';
+import { NftComponent } from './components/nft/nft.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'show/:idProject',
     component:ShowAnimationComponent ,
+
+  },
+  {
+    path: 'nft',
+    component:NftComponent ,
 
   },
   {

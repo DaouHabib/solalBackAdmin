@@ -36,12 +36,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
 import { ShowAnimationComponent } from './components/animate-image/show-animation/show-animation.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NftComponent } from './components/nft/nft.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ShowAnimationComponent,
+    NftComponent,
   ],
   imports: [
     FontAwesomeModule,
